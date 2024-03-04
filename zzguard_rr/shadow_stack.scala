@@ -33,9 +33,13 @@ class mini_decode extends Module{
       io.ins_type := 2.U
       io.data     := io.din(63,0)
     }
-    .otherwise{
+    .elsewhen(io.din(139,135) =/= 0.U){
       io.ins_type := 3.U
       io.data     := io.din(127,64)
+    }
+    .otherwise{
+      io.ins_type := 0.U
+      io.data     := 0.U
     }
   }
   .otherwise{
